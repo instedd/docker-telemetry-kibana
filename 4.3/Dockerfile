@@ -16,10 +16,10 @@ RUN arch="$(dpkg --print-architecture)" \
 	&& chmod +x /usr/local/bin/gosu
 
 ENV KIBANA_VERSION 4.3.0
-ENV KIBANA_SHA1 d64e1fc0ddeaaab85e168177de6c78ed82bb3a3b
+ENV KIBANA_SHA1 6eb28a26f36bfc56128f9a88e7fa4e09f3751a36
 
 RUN set -x \
-	&& curl -fSL "https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VERSION}-linux-x64.tar.gz" -o kibana.tar.gz \
+	&& curl -fSL "https://s3.amazonaws.com/dist.instedd.org/kibana/kibana-${KIBANA_VERSION}-telemetry-linux-x64.tar.gz" -o kibana.tar.gz \
 	&& echo "${KIBANA_SHA1}  kibana.tar.gz" | sha1sum -c - \
 	&& mkdir -p /opt/kibana \
 	&& tar -xz --strip-components=1 -C /opt/kibana -f kibana.tar.gz \
